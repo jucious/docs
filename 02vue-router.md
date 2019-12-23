@@ -48,7 +48,7 @@
         ``` html
         //带查询参数
         <router-link :to="{path:'/login',query:{name:username}}"></router-link>
-        <!-- 命名的路由 -->
+        - 命名路由
         <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>  
         ```
         - 命名视图
@@ -57,12 +57,12 @@
                 const router = new VueRouter({
                 routes: [
                     {
-                    path: '/',
-                    components: {
-                        default: Foo,
-                        a: Bar,
-                        b: Baz
-                    }
+                        path: '/',
+                        components: {
+                            default: Foo,
+                            a: Bar,
+                            b: Baz
+                        } 
                     }
                 ]
                 })
@@ -70,6 +70,29 @@
                 <router-view class="view one"></router-view>
                 <router-view class="view two" name="a"></router-view>
                 <router-view class="view three" name="b"></router-view>
+            ```
+        - 嵌套路由
+            ``` js
+               const router = new VueRouter({
+                        routes: [
+                            { path: '/user/:id', component: User,
+                                children: [
+                                    {
+                                    // 当 /user/:id/profile 匹配成功，
+                                    // UserProfile 会被渲染在 User 的 <router-view> 中
+                                    path: 'profile',
+                                    component: UserProfile
+                                    },
+                                    {
+                                    // 当 /user/:id/posts 匹配成功
+                                    // UserPosts 会被渲染在 User 的 <router-view> 中
+                                    path: 'posts',
+                                    component: UserPosts
+                                    }
+                                ]
+                                }
+                            ]
+                })
             ```
 * ### 相关扩展 ###
     - es6-import、export、export defaut

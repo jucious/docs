@@ -14,6 +14,7 @@
 * #### async函数 ####
     - async 返回一个promise对象
         async内部return的值，会成为then函数的参数。
+        await的也是如此，return的值会成为then参数。
         ```
         async function f() {
         return 'hello world';
